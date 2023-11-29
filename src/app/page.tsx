@@ -1,6 +1,6 @@
 'use client'
 
-import { setDoc, doc } from "firebase/firestore"
+import { setDoc, updateDoc, doc } from "firebase/firestore"
 import { db } from '../../lib/firebase'
 
 import { useState } from "react"
@@ -15,6 +15,7 @@ export default function Home() {
 
   const startShift = async () => {
     await setDoc(doc(db, 'data', 'rate'), {rate: Number(rate)})
+    await updateDoc(doc(db, 'data', 'times'), {start: Math.floor(Date.now() / 1000)})
     setRate('')
   }
 
