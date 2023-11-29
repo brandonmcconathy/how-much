@@ -2,7 +2,6 @@
 
 import { setDoc, updateDoc, doc } from "firebase/firestore"
 import { db } from '../../lib/firebase'
-
 import { useState } from "react"
 
 export default function Home() {
@@ -19,12 +18,12 @@ export default function Home() {
     setRate('')
   }
 
-  const startMeal = () => {
-    
+  const startMeal = async () => {
+    await updateDoc(doc(db, 'data', 'times'), {lunch: Math.floor(Date.now() / 1000)})
   }
 
-  const endMeal = () => {
-    
+  const endMeal = async () => {
+    await updateDoc(doc(db, 'data', 'times'), {endLunch: Math.floor(Date.now() / 1000)})
   }
 
   const endShift = () => {
