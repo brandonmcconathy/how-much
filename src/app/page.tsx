@@ -1,5 +1,8 @@
 'use client'
 
+import { setDoc, doc } from "firebase/firestore"
+import { db } from '../../lib/firebase'
+
 import { useState } from "react"
 
 export default function Home() {
@@ -10,8 +13,9 @@ export default function Home() {
     setRate(event.target.value)
   }
 
-  const startShift = () => {
-
+  const startShift = async () => {
+    await setDoc(doc(db, 'data', 'rate'), {rate: Number(rate)})
+    setRate('')
   }
 
   const startMeal = () => {
