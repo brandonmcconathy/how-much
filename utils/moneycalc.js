@@ -3,11 +3,14 @@ export default function moneyCalc(times, rate) {
   const currTime = Date.now() / 1000
 
   if (lunch == '') {
-    return (currTime - start) * (rate / 3600)
+    const money = (currTime - start) * (rate / 3600)
+    return money.toFixed(2)
   } else if (endLunch == '') {
-    return (lunch - start) * (rate / 3600)
+    const money = (lunch - start) * (rate / 3600)
+    return money.toFixed(2)
   } else {
-    return ((lunch - start) + (currTime - endLunch)) * (rate / 3600)
+    const money = ((lunch - start) + (currTime - endLunch)) * (rate / 3600)
+    return money.toFixed(2)
   }
     
   
