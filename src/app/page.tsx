@@ -9,7 +9,7 @@ export default function Home() {
 
   const [rate, setRate] = useState('')
   const [status, setStatus] = useState('')
-  const [times, setTimes] = useState({start: '', lunch: '', endLunch: ''})
+  const [times, setTimes] = useState({start: '', lunch: '', endLunch: '', endWork: ''})
   const [money, setMoney] = useState(0)
   const [loading, setLoading] = useState(true)
 
@@ -26,8 +26,15 @@ export default function Home() {
       console.log(tempTimes)
       setMoney(moneyCalc(tempTimes, tempRate))
     }
+
+    // const interval = setInterval(() => {
+      
+      
+    // }, 1000)
+    
     getDBData()
     setLoading(false)
+    // return () => clearInterval(interval)
   }, [])
 
   const handleChange = (event: any) => {
@@ -38,7 +45,7 @@ export default function Home() {
     setStatus('working')
     await setDoc(doc(db, 'data', 'rate'), {rate: Number(rate)})
     await setDoc(doc(db, 'data', 'status'), {status: 'working'})
-    await updateDoc(doc(db, 'data', 'times'), {start: Math.floor(Date.now() / 1000), lunch: '', endLunch: ''})
+    await updateDoc(doc(db, 'data', 'times'), {start: Math.floor(Date.now() / 1000), lunch: '', endLunch: '', endWork: ''})
     setRate('')
   }
 
@@ -54,8 +61,9 @@ export default function Home() {
     await updateDoc(doc(db, 'data', 'times'), {endLunch: Math.floor(Date.now() / 1000)})
   }
 
-  const endShift = () => {
-    
+  const endShift = async () => {
+    setStatus('off')
+    await setDoc(doc(db, 'data', 'status'), {status: 'off'})
   }
 
   if (loading) {
