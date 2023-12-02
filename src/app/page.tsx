@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center my-10 gap-16 text-white">
       <h1 className="text-3xl font-semibold">How Much Have I Made</h1>
-      <h2 className="text-3xl">{money}</h2>
+      <h2 className="text-3xl">${money}</h2>
       <input className="bg-green-700 px-4 py-2 rounded-xl box-pop" placeholder="Hourly Rate" value={rate} onChange={handleChange} required />
       <div className="flex flex-col items-center gap-5 text-lg font-semibold">
         <button id="start-shift" onClick={startShift} className="bg-green-700 px-4 py-2 rounded-xl">Start Shift</button>
