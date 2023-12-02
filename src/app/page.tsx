@@ -36,8 +36,10 @@ export default function Home() {
 
   const startShift = async () => {
     await setDoc(doc(db, 'data', 'rate'), {rate: Number(rate)})
+    await setDoc(doc(db, 'data', 'status'), {status: 'working'})
     await updateDoc(doc(db, 'data', 'times'), {start: Math.floor(Date.now() / 1000), lunch: '', endLunch: ''})
     setRate('')
+    setStatus('working')
   }
 
   const startMeal = async () => {
