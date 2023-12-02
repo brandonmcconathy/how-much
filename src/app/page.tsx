@@ -4,6 +4,7 @@ import { setDoc, updateDoc, doc, getDoc } from "firebase/firestore"
 import { db } from '../../lib/firebase'
 import { useState, useEffect } from "react"
 import moneyCalc from '../../utils/moneycalc'
+import timeCalc from '../../utils/timecalc'
 
 export default function Home() {
 
@@ -11,6 +12,7 @@ export default function Home() {
   const [status, setStatus] = useState('')
   const [times, setTimes] = useState({start: '', lunch: '', endLunch: '', endWork: ''})
   const [money, setMoney] = useState(0)
+  const [time, setTime] = useState(0)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -25,6 +27,7 @@ export default function Home() {
       setStatus(statusSnap.data().status)
       console.log(tempTimes)
       setMoney(moneyCalc(tempTimes, tempRate))
+      setTime(timeCalc(tempTimes))
     }
 
     // const interval = setInterval(() => {
@@ -87,6 +90,7 @@ export default function Home() {
           <button id="end-meal" onClick={endMeal} className="bg-green-700 px-4 py-2 rounded-xl">End Meal</button>
           <button id="end-shift" onClick={endShift} className="bg-green-700 px-4 py-2 rounded-xl">End Shift</button>
           <h1>{status}</h1>
+          <h1>{time}</h1>
         </div>
       </main>
     )
@@ -102,6 +106,7 @@ export default function Home() {
           <button id="end-meal" onClick={endMeal} className="bg-green-700 px-4 py-2 rounded-xl">End Meal</button>
           <button id="end-shift" onClick={endShift} className="bg-green-700 px-4 py-2 rounded-xl">End Shift</button>
           <h1>{status}</h1>
+          <h1>{time}</h1>
         </div>
       </main>
     )
@@ -115,6 +120,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-5 text-lg font-semibold">
           <button id="end-meal" onClick={endMeal} className="bg-green-700 px-4 py-2 rounded-xl">End Meal</button>
           <h1>{status}</h1>
+          <h1>{time}</h1>
         </div>
       </main>
     )
