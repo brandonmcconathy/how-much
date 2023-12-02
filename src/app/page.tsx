@@ -29,16 +29,15 @@ export default function Home() {
       setMoney(moneyCalc(tempTimes, tempRate))
       setTime(timeCalc(tempTimes))
     }
-
-    // const interval = setInterval(() => {
-      
-      
-    // }, 1000)
-    
     getDBData()
     setLoading(false)
-    // return () => clearInterval(interval)
-  }, [])
+
+    const interval = setInterval(() => {
+      setMoney(moneyCalc(times, rate))
+      setTime(timeCalc(times))
+    }, 50)
+    return () => clearInterval(interval)
+  }, [money, time])
 
   const handleChange = (event: any) => {
     setRate(event.target.value)
