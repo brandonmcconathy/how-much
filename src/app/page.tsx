@@ -11,8 +11,8 @@ export default function Home() {
   const [rate, setRate] = useState('')
   const [status, setStatus] = useState('')
   const [times, setTimes] = useState({start: '', lunch: '', endLunch: '', endWork: ''})
-  const [money, setMoney] = useState(0)
-  const [time, setTime] = useState(0)
+  const [money, setMoney] = useState('0')
+  const [time, setTime] = useState('0')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -20,11 +20,11 @@ export default function Home() {
       const timesSnap = await getDoc(doc(db, 'data', 'times'))
       const rateSnap = await getDoc(doc(db, 'data', 'rate'))
       const statusSnap = await getDoc(doc(db, 'data', 'status'))
-      const tempTimes = timesSnap.data()
-      const tempRate = rateSnap.data().rate
+      const tempTimes:any = timesSnap.data()
+      const tempRate = rateSnap.data()?.rate
       setTimes(tempTimes)
       setRate(tempRate)
-      setStatus(statusSnap.data().status)
+      setStatus(statusSnap.data()?.status)
       console.log(tempTimes)
       setMoney(moneyCalc(tempTimes, tempRate))
       setTime(timeCalc(tempTimes))
