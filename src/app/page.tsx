@@ -31,7 +31,9 @@ export default function Home() {
     }
     getDBData()
     setLoading(false)
+  }, [])
 
+  useEffect(() => {
     const interval = setInterval(() => {
       setMoney(moneyCalc(times, rate))
       setTime(timeCalc(times))
