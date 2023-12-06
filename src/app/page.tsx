@@ -58,8 +58,8 @@ export default function Home() {
   }
 
   const endMeal = async () => {
-    setStatus('working')
-    await setDoc(doc(db, 'data', 'status'), {status: 'working'})
+    setStatus('endLunch')
+    await setDoc(doc(db, 'data', 'status'), {status: 'endLunch'})
     await updateDoc(doc(db, 'data', 'times'), {endLunch: Math.floor(Date.now() / 1000)})
   }
 
