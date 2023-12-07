@@ -1,6 +1,6 @@
 'use client'
 
-import { setDoc, updateDoc, doc, getDoc } from "firebase/firestore"
+import { setDoc, updateDoc, doc, getDoc, increment } from "firebase/firestore"
 import { db } from '../../lib/firebase'
 import { useState, useEffect } from "react"
 import moneyCalc from '../../utils/moneycalc'
@@ -13,6 +13,7 @@ export default function Home() {
   const [times, setTimes] = useState({start: '', lunch: '', endLunch: '', endWork: ''})
   const [money, setMoney] = useState('0')
   const [time, setTime] = useState('0')
+  const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -20,12 +21,13 @@ export default function Home() {
       const timesSnap = await getDoc(doc(db, 'data', 'times'))
       const rateSnap = await getDoc(doc(db, 'data', 'rate'))
       const statusSnap = await getDoc(doc(db, 'data', 'status'))
+      const totalSnap = await getDoc(doc(db, 'data', 'total'))
       const tempTimes:any = timesSnap.data()
       const tempRate = rateSnap.data()?.rate
       setTimes(tempTimes)
       setRate(tempRate)
       setStatus(statusSnap.data()?.status)
-      console.log(tempTimes)
+      setTotal(totalSnap.data()?.total)
       setMoney(moneyCalc(tempTimes, tempRate))
       setTime(timeCalc(tempTimes))
     }
@@ -69,6 +71,7 @@ export default function Home() {
     setStatus('off')
     await setDoc(doc(db, 'data', 'status'), {status: 'off'})
     await updateDoc(doc(db, 'data', 'times'), {endWork: Math.floor(Date.now() / 1000)})
+    await updateDoc(doc(db, 'data', 'total'), {total: increment(Number(money))})
   }
 
   if (loading) {
@@ -90,6 +93,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-5 text-lg font-semibold">
           <button id="start-shift" onClick={startShift} className="bg-green-700 px-4 py-2 rounded-xl">Start Shift</button>
           <h1>Status: {status}</h1>
+          <h1>Total: {total}</h1>
         </div>
       </main>
     )
