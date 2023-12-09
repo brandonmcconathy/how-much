@@ -93,7 +93,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-5 text-lg font-semibold">
           <button id="start-shift" onClick={startShift} className="bg-green-700 px-4 py-2 rounded-xl">Start Shift</button>
           <h1>Status: {status}</h1>
-          <h1>Total: {total}</h1>
+          <h1>Total: {total.toFixed(2)}</h1>
         </div>
       </main>
     )
@@ -109,7 +109,7 @@ export default function Home() {
           <button id="start-meal" onClick={startMeal} className="bg-green-700 px-4 py-2 rounded-xl">Start Meal</button>
           <button id="end-shift" onClick={endShift} className="bg-green-700 px-4 py-2 rounded-xl">End Shift</button>
           <h1>Status: {status}</h1>
-          <h1>Total: {total}</h1>
+          <h1>Total: {total.toFixed(2)}</h1>
         </div>
       </main>
     )
@@ -124,7 +124,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-5 text-lg font-semibold">
           <button id="end-meal" onClick={endMeal} className="bg-green-700 px-4 py-2 rounded-xl">End Meal</button>
           <h1>Status: {status}</h1>
-          <h1>Total: {total}</h1>
+          <h1>Total: {total.toFixed(2)}</h1>
         </div>
       </main>
     )
@@ -139,7 +139,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-5 text-lg font-semibold">
           <button id="end-shift" onClick={endShift} className="bg-green-700 px-4 py-2 rounded-xl">End Shift</button>
           <h1>Status: {status}</h1>
-          <h1>Total: {total}</h1>
+          <h1>Total: {total.toFixed(2)}</h1>
         </div>
       </main>
     )
