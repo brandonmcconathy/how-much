@@ -74,6 +74,11 @@ export default function Home() {
     await updateDoc(doc(db, 'data', 'total'), {total: increment(Number(money))})
   }
 
+  const resetTotal = async () => {
+    setTotal(0)
+    await setDoc(doc(db,'data','total'), {total: 0})
+  }
+
   if (loading) {
     return (
       <main className="flex flex-col items-center my-10 gap-16 text-white">
@@ -94,6 +99,7 @@ export default function Home() {
           <button id="start-shift" onClick={startShift} className="bg-green-700 px-4 py-2 rounded-xl">Start Shift</button>
           <h1 className="text-sm text-gray-400">Status: {status}</h1>
           <h1>Total: {total.toFixed(2)}</h1>
+          <button onClick={resetTotal} className="bg-green-700 px-4 py-2 rounded-xl box-pop">Reset Total</button>
         </div>
       </main>
     )
