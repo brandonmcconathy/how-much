@@ -99,7 +99,7 @@ export default function Home() {
           <button id="start-shift" onClick={startShift} className="bg-green-700 px-4 py-2 rounded-xl">Start Shift</button>
           <h1 className="text-sm text-gray-400">Status: {status}</h1>
           <h1>Total: {total.toFixed(2)}</h1>
-          <button onClick={resetTotal} className="bg-green-700 px-4 py-2 rounded-xl box-pop">Reset Total</button>
+          <button onClick={resetTotal} className="bg-green-700 px-3 py-1 rounded-xl box-pop text-sm">Reset Total</button>
         </div>
       </main>
     )
